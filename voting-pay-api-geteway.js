@@ -11,6 +11,15 @@ const app = express();
 //});
 
 app.use(
+  "/profile",
+  proxy({
+    target: "http://localhost:8003/",
+    changeOrigin: true,
+    pathRewrite: path => path.replace(/^\/profile/, "")
+  })
+);
+
+app.use(
   "/mail",
   proxy({
     target: "http://localhost:8002/",
